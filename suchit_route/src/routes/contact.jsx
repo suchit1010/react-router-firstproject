@@ -1,14 +1,25 @@
-import { Form } from  "react-router-dom";
+import { Form, useLoaderData } from  "react-router-dom";
+import { getContact } from "../contacts";
 
+
+export async function loader({ params }) {
+    const contact = await getContact(params.contactId);
+    return { contact };
+  }
+
+  
 export default function Contact() {
-    const contact = {
-        first: "Suchit",
-        last: "Soni",
-        avatar: "https://avatars.githubusercontent.com/u/101723031?s=96&v=4https://pps.whatsapp.net/v/t61.24694-24/309786879_1059288558097683_6825274734920459211_n.jpg?ccb=11-4&oh=01_AdSOAgFCUiWcGLTffJ5g-zU0qNqWKEDZ8hXf5YgAWtoYcQ&oe=64182FB5",
-        twitter: "suchit1010",
-        notes: "Curious Astrophile💫| Web Developer | DevOps enthusiastic + Learner 🕸️ | Open Source Contributor",
-        favorite: true,
-    };
+      const { contact } = useLoaderData();
+
+
+    // const contact = {
+    //     first: "Suchit",
+    //     last: "Soni",
+    //     avatar: "https://avatars.githubusercontent.com/u/101723031?s=96&v=4https://pps.whatsapp.net/v/t61.24694-24/309786879_1059288558097683_6825274734920459211_n.jpg?ccb=11-4&oh=01_AdSOAgFCUiWcGLTffJ5g-zU0qNqWKEDZ8hXf5YgAWtoYcQ&oe=64182FB5",
+    //     twitter: "suchit1010",
+    //     notes: "Curious Astrophile💫| Web Developer | DevOps enthusiastic + Learner 🕸️ | Open Source Contributor",
+    //     favorite: true,
+    // };
 
     return (
         <div id="contact">
